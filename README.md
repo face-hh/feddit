@@ -23,11 +23,22 @@ Encryption_Key=
 ```
 DB = MongoDB connection string.
 
-Ecryption_Key = A string which will be used to encrypt the passwords & JWTs
+Ecryption_Key = A string which will be used to encrypt the session cookies
 
 2. Run `npm i`
 3. Run `npm test`
 4. Go to `https://127.0.0.2:3000`
+
+# Encryption
+[Passwords](https://npmjs.com/package/bcrypt) and [session cookies](https://www.npmjs.com/package/jsonwebtoken) are encrypted. 
+```
+Password example: $2b$10$3TsrEozOYxBa/nAwrwZazudUc68ut.oTR/o1RCXRASLnJxi7zMHw.
+Session cookie example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NDk2YTQ4NmUyMDZmM2RiNTI1Zjc3NjciLCJkYXRlIjoxNjg4Mzk1NzYwNjY1LCJhZGRvbiI6IjE4ODk5NjIzNDNkMDk1ZTkzNjAzNmE2ODVhOTA1NDRmMWQ0MDQzYTYxZTc5MDY1NiIsInN1YmZlZGRpdHMiOnt9LCJkZXNjcmlwdGlvbiI6IkkgaGF2ZW4ndCBzZXQgYSBkZXNjcmlwdGlvbiB5ZXQhIiwiaWF0IjoxNjg4Mzk1NzYwfQ.CJgeCdC1VKKQ5oPuGg7veLnO1pkcAg8Y_vG-en7e1BQ
+```
+
+# Algorithm
+## Also available inside `/src/Backend/Routes/generatefeed.js`
+![image](https://github.com/face-hh/feddit/assets/69168154/9a011785-a469-4bb6-a6f1-eb1fb283bfab)
 
 # License
 Apache-2.0
