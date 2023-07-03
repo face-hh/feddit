@@ -80,6 +80,10 @@ app.get('/', async (req, res) => {
 	res.sendFile(mainPath);
 });
 
+app.get('/home', async (req, res) => {
+	res.sendFile(mainPath);
+});
+
 app.get('/posts/:id', async (req, res) => {
 	res.sendFile(postPath);
 });
