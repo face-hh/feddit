@@ -33,7 +33,7 @@ proceedButton.addEventListener('click', async () => {
 	else if (status === 200) {
 		await swal('Welcome!', 'You\'ve been authenticated!', 'success');
 
-		window.location.href = '/';
+		window.location.href = '/home';
 	}
 });
 
