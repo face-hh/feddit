@@ -54,6 +54,8 @@ module.exports = {
 				password: encryptedPass,
 				sessionToken,
 				joinedAt: Date.now(),
+				mostVisitedSubfeddits: {},
+				karma: 0,
 			});
 
 			res.cookie('_SESSION_TOKEN', sessionToken);
