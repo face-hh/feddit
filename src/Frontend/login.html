@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feddit - Login</title>
+    <link type="text/css" rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="logo">
+        <a href="/">
+            <img style="width: 200px; resize: none" src="images/logo.png">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="dropdown">
+            <div class="profile">
+                <img class="dropbtn" src="images/fedditor.png">
+                <div class="dropdown-content">
+                    <ul>
+                        <div class="extraInfo"><i class='bx bx-cog'></i><span class="username">No account.</span></div>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
+                            <li><i class='bx bx-user'></i><span>Profile</span></li>
+                        </a>
+                        <li onclick="logout()"><i class='bx bx-log-in-circle'></i><span>Log Out</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login">
+        <div class="box">
+            <span class="frontText">Login</span>
+            <br>
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Name" name="name" id='username' required />
+                <label for="name" class="form__label">Username</label>
+            </div>
+            <div class="form__group field">
+                <input type="password" class="form__field" placeholder="Name" name="name" id='password' required />
+                <label for="name" class="form__label">Password</label>
+            </div>
+
+            <button class="proceed-button" id="proceed-button" role="button">Proceed</button>
+        </div>
+    </div>
+</body>
+<script src="/js/utils.js"></script>
+
+<script src="/js/login.js"></script>
+<script src="/js/handleProfile.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</html>

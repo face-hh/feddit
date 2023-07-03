@@ -1,0 +1,148 @@
+@import 'main.css';
+@import 'login.css';
+
+body {
+    overflow-y: auto;
+}
+.submitFields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    color: white;
+    transform: translateY(30px);
+}
+
+.title {
+    font-family: 'Lato';
+    color: var(--text-color);
+    resize: vertical;
+    overflow: auto;
+    background-color: var(--popup-theme-100);
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid var(--brand-theme);
+    width: 770px;
+    user-select: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    height: 20px;
+}
+
+.description {
+    font-family: 'Lato';
+    color: var(--text-color);
+    resize: vertical;
+    overflow: auto;
+
+    background-color: var(--popup-theme-100);
+    outline: none;
+    padding: 10px;
+
+    border-radius: 20px;
+    border: 2px solid var(--brand-theme);
+
+    width: 770px;
+    user-select: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    height: 106px;
+}
+
+.titleDiv,
+.desc {
+    position: relative;
+}
+
+.charLimit {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+
+    pointer-events: none;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 11px;
+}
+
+.postButton {
+    padding: 10px 24px;
+    font-size: 20px;
+    border-radius: 32px;
+    cursor: pointer;
+    background-color: var(--brand-theme);
+    color: var(--text-color);
+
+    transition: all .3s;
+}
+
+.postButton:hover {
+    background-color: var(--gradient-start);
+    transform: translateY(5px);
+}
+
+.subfedditDropdown {
+    /* position: relative; */
+    transform: translateY(10px);
+    display: flex;
+    z-index: 2;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dropdownButton {
+    background-color: var(--brand-theme);
+    border-radius: 50px;
+    color: var(--text-color);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdownContent {
+    display: none;
+
+    padding: 10px;
+    background-color: var(--gradient-end);
+    margin: 20px 0px;
+
+    box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
+
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+/* Links inside the dropdown */
+.dropdownContent a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+
+    color: black;
+    padding: 12px 16px;
+}
+
+.dropdownContent a img, .dropdownButton img {
+    width: 22px;
+
+    vertical-align: middle;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+/* Change color of dropdown links on hover */
+.dropdownContent a:hover {
+    border-radius: 50px;
+    background-color: var(--gradient-end-100)
+}
+
+/* Show the dropdown menu on hover */
+.dropdownContent[opened] {
+    display: flex;
+}

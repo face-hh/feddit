@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feddit</title>
+
+    <link type="text/css" rel="stylesheet" href="/css/homepage.css">
+    <link type="text/css" rel="stylesheet" href="/css/subfeddit.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
+</head>
+
+<body>
+    <div class="logo">
+        <a href="/">
+            <img style="width: 200px; resize: none" src="/images/logo.png">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="postMenu">
+            <a href="submit">
+                <input placeholder="Create a post.">
+            </a>
+        </div>
+        <div class="dropdown">
+            <div class="profile">
+                <img class="dropbtn" src="/images/fedditor.png">
+                <div class="dropdown-content">
+                    <ul>
+                        <div class="extraInfo"><i class='bx bx-cog'></i><span class="username">No account.</span></div>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
+                            <li><i class='bx bx-user'></i><span>Profile</span></li>
+                        </a>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/edit/">
+                            <li><i class='bx bx-user'></i><span>Edit profile</span></li>
+                        </a>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/manage/">
+                            <li><i class='bx bx-user'></i><span>Manage subfeddit</span></li>
+                        </a>
+                        <li onclick="logout()"><i class='bx bx-log-in-circle'></i><span>Log Out</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="subfedditContainer">
+        <div class="subfedditInfobox">
+            <img src="/images/random_guy.png">
+            <span>f/discordapp</span>
+        </div>
+        <div class="subfedditDiv">
+            <div class="subfedditDescription">The unofficial subreddit of NF (Nate Feuerstein), the lyricist, rapper,
+                and hip-hop artist. #realmusictillthedaywedie</div>
+
+            <a class="birthdayA" href="/subfeddit/nfrealmusic">
+                <img class="birthdayImg" src="/images/cake.png">
+                <span>Created Apr 22, 2023</span>
+            </a>
+
+            <hr>
+
+            <div class="memberStats">
+                <div>
+                    <span class="mainText">27.8k</span>
+                    <span>Members</span>
+                </div>
+                <div>
+                    <img src="/images/online.png"><span class="mainText">853</span>
+                    <span>Online</span>
+                </div>
+            </div>
+
+            <hr>
+
+            <button>Join</button>
+            <button onclick="window.location.href='/submit'">Create a post</button>
+        </div>
+    </div>
+
+
+    <div class="postContainer">
+        <div class="scrollable">
+
+            <div class="voteSample" style="display:none;">
+                <div class="votes" id="ENIOAFNAOEIN">
+                    <div class="voteButtons">
+                        <img class="upvote" src="/images/upvote.png" onclick="upvote('ENIOAFNAOEIN')">
+                        <br>
+                        <strong class="voteCount">2.8k</strong>
+                        <br>
+                        <img class="downvote" src="/images/downvote.png" onclick="downvote('ENIOAFNAOEIN')">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="extraPostInfo">
+                        <a href="/f/whyyoulookinhere">
+                            <img src="/images/random_guy.png">
+                            f/whyyoulookinhere
+                        </a>
+                    </div>
+                    <div class="metadata">
+                        <a href="/">
+                            <h1 class="title"></h1>
+                        </a>
+                        <p></p>
+                    </div>
+
+                    <div class="interactionButtons">
+                        <a href="/">
+                            <img src="/images/comment.png">
+                            Comments
+                        </a>
+
+                        <a href="/">
+                            <img src="/images/share.png">
+                            Share
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <form action="/api/uploadicon" method="post" enctype="multipart/form-data">
+        <input type="file" name="avatar"/>
+        <input type="submit" value="Upload"/>
+    </form> -->
+</body>
+<script src="/js/utils.js"></script>
+
+<script src="/js/homepage.js"></script>
+<script src="/js/handleProfile.js"></script>
+<script src="/js/subfeddit.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</html>

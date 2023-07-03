@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feddit</title>
+
+    <link type="text/css" rel="stylesheet" href="/css/submit.css">
+</head>
+
+<body>
+    <div class="logo">
+        <a href="/">
+            <img style="width: 200px; resize: none" src="/images/logo.png">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="dropdown">
+            <div class="profile">
+                <img class="dropbtn" src="/images/fedditor.png">
+                <div class="dropdown-content">
+                    <ul>
+                        <div class="extraInfo"><i class='bx bx-cog'></i><span class="username">No account.</span></div>
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
+                            <li><i class='bx bx-user'></i><span>Profile</span></li>
+                        </a>
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)"
+                            href="/edit/">
+                            <li><i class='bx bx-user'></i><span>Edit profile</span></li>
+                        </a>
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)"
+                            href="/manage/">
+                            <li><i class='bx bx-user'></i><span>Manage subfeddit</span></li>
+                        </a>
+                        <li onclick="logout()"><i class='bx bx-log-in-circle'></i><span>Log Out</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="submitFields">
+
+        <div class="desc">
+            <textarea class="description" placeholder="Profile Description" maxlength="100"></textarea>
+        </div>
+
+        <button class="postButton" onclick="saveChanges()">Save</button>
+    </div>
+</body>
+<script src="/js/utils.js"></script>
+
+<script src="/js/handleProfile.js"></script>
+
+<script>
+    var form = document.getElementById("uploadForm"); // Get the form element
+
+    var desc = document.querySelector(".description"); // Get the name input element
+
+    async function saveChanges() {
+        const response = await fetch("/api/setuser", {
+            method: "POST",
+            headers: headersList,
+            body: JSON.stringify({
+                description: desc.value
+            })
+        });
+
+        if (response.ok) {
+            swal('Ay!', 'Settings saved!', 'success')
+        }
+        else {
+            swal('Man..', 'Something went wrong, and we don\'t even know why...')
+        }
+    }
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</html>

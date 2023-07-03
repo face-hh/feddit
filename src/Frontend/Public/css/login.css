@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import 'main.css';
+
+body {
+    background-color: var(--main-theme);
+    font-family: 'Lato';
+    overflow: hidden; /* Hide scrollbars */
+}
+
+/* Customize pop-up (sweetalert) */
+.swal-button {
+    background-color: transparent;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+}
+
+.swal-button:focus{box-shadow:none;}
+
+.swal-modal {
+    background-color: var(--popup-theme);
+}
+
+.swal-title {
+    color: var(--text-color);
+}
+.swal-icon--success:after, .swal-icon--success:before {
+    background-color: transparent;
+}
+
+.swal-text {
+    color: var(--text-color-100)
+}
+.swal-icon--success__ring {
+    border: 4px solid var(--gradient-end);
+}
+
+.swal-icon--success__line {
+    background-color: var(--gradient-start);
+}
+
+.swal-icon--success__hide-corners {
+    background-color: transparent;
+}
+
+.swal-icon--success {
+    border-color: var(--popup-theme);
+}
+
+/* LOGIN/SINGUP page */
+
+.box {
+    border-radius: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 250px;
+}
+
+.frontText {
+    pointer-events: none;
+    font-family: 'Lato';
+    background: -webkit-linear-gradient(left, var(--gradient-start), var(--gradient-end));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-size: 150px;
+    position: absolute;
+    top: 10%;
+    right: 30%;
+    text-align: center;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+}
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 350px;
+    font-family: 'Lato';
+}
+
+.form__field {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid var(--secondary-theme);
+    outline: 0;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+    color: transparent;
+}
+
+.form__field:placeholder-shown~.form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+
+.form__label {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1.2rem;
+    color: var(--secondary-theme);
+}
+
+.form__field:focus~.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: var(--gradient-start);
+}
+
+.form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    border-image-slice: 1;
+}
+
+/* reset input */
+.form__field:required,
+.form__field:invalid {
+    box-shadow: none;
+}
+
+.proceed-button {
+    opacity: 0.9;
+    transform: translate(135%, 100%);
+
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    color: var(--text-color);
+
+    border-radius: 8px;
+    border-style: none;
+
+    cursor: pointer;
+    font-family: 'Lato';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 13px 20px;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.proceed-button:hover {
+    opacity: 1;
+    transition-duration: .3s;
+}
+
+.proceed-button:active {
+    transform: translate(135%, 120%);
+}
+
+.proceed-button:hover {
+    box-shadow: rgba(255, 51, 102, .2) 0 6px 12px;
+}

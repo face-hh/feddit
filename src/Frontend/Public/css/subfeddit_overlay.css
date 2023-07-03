@@ -1,0 +1,121 @@
+
+.subfedditDiv {
+    display: flex;
+    width: 312px;
+    height: auto;
+
+    margin: auto;
+    font-family: 'Lato';
+    color: var(--text-color);
+    overflow: auto;
+    background-color: var(--popup-theme-100);
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid var(--brand-theme);
+
+    user-select: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subfedditTitle {
+    text-decoration: none;
+    color: var(--text-color);
+
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+.subfedditImg {
+    width: 54px;
+    border-radius: 50%;
+
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.birthdayA {
+    text-decoration: none;
+    color: var(--text-color-100);
+
+    display: inline-flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.birthdayImg {
+    width: 22px;
+
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.subfedditDescription {
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+}
+
+.interestingInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.subfedditDiv hr {
+    width: 251px;
+    height: 1px;
+    border-color: var(--secondary-theme-100);
+    margin-top: 10px;
+}
+
+.memberStats {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+
+    white-space: nowrap;
+    
+    margin-top: 10px;
+}
+
+.memberStats span {
+    line-height: 20px;
+    color: var(--text-color-100);
+}
+
+.mainText {
+    color: var(--text-color) !important
+}
+
+.memberStats div span {
+    display: inline-flex;
+    align-items: center;
+}
+.memberStats div img {
+    width: 8px;
+
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.subfedditDiv button {
+    margin-top: 13px;
+
+    padding: 5px 12px;
+    font-size: 20px;
+    border-radius: 32px;
+    cursor: pointer;
+    background-color: var(--brand-theme);
+    color: var(--text-color);
+    transition: all .3s;
+}
+
+.subfedditDiv button:hover {
+    transform: translateY(5px)
+}

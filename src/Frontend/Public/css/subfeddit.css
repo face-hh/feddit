@@ -1,0 +1,78 @@
+@import 'subfeddit_overlay.css';
+
+.subfedditContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .subfedditInfobox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--secondary-theme-900);
+    color: var(--text-color);
+    padding: 20px;
+  }
+  
+  .subfedditInfobox img {
+    width: 100px;
+    border-radius: 50%;
+  }
+  
+  .subfedditInfobox span {
+    padding-top: 20px;
+    font-size: 50px;
+  }
+  
+  .subfedditDiv {
+    height: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+
+    margin-bottom: var(--settings-test) !important;
+    margin-right: 87px !important;
+  }
+  
+  .subfedditDescription {
+    margin-bottom: 10px;
+  }
+  
+  .memberStats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .mainText {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .birthdayA {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  .birthdayImg {
+    width: 20px;
+    margin-right: 5px;
+  }
+  
+  hr {
+    margin: 10px 0;
+  }
+  
+  button {
+    margin-right: 10px;
+  }
+  

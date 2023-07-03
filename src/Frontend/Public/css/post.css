@@ -1,0 +1,20 @@
+@import 'main.css';
+@import 'homepage.css';
+@import 'subfeddit_overlay.css';
+
+.submitFields {
+    align-items: unset;
+    transform: translate(330px, 30px);
+}
+
+.title {
+    text-decoration: none;
+    resize: none;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.description {
+    resize: none;
+    height: 24px;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feddit</title>
+
+    <link type="text/css" rel="stylesheet" href="css/submit.css">
+</head>
+
+<body>
+    <div class="logo">
+        <a href="/">
+            <img style="width: 200px; resize: none" src="images/logo.png">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="dropdown">
+            <div class="profile">
+                <img class="dropbtn" src="images/fedditor.png">
+                <div class="dropdown-content">
+                    <ul>
+                        <div class="extraInfo"><i class='bx bx-cog'></i><span class="username">No account.</span></div>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
+                            <li><i class='bx bx-user'></i><span>Profile</span></li>
+                        </a>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/edit/">
+                            <li><i class='bx bx-user'></i><span>Edit profile</span></li>
+                        </a>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/manage/">
+                            <li><i class='bx bx-user'></i><span>Manage subfeddit</span></li>
+                        </a>
+                        <li onclick="logout()"><i class='bx bx-log-in-circle'></i><span>Log Out</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="submitFields">
+        <div class="titleDiv">
+            <textarea id="subfedditTitle" class="title" placeholder="Subfeddit" maxlength="20"></textarea>
+        </div>
+
+        <div class="titleDiv">
+            <textarea id="actualTitle" class="title" placeholder="Title" maxlength="300"></textarea>
+            <div class="charLimit">0/300</div>
+        </div>
+
+        <div class="desc">
+            <textarea class="description" placeholder="Description" maxlength="6000"></textarea>
+            <div class="charLimit">0/6000</div>
+        </div>
+        <button class="postButton" onclick="post()">Post</button>
+    </div>
+</body>
+<script src="/js/utils.js"></script>
+
+<script src="js/handleProfile.js"></script>
+<script src="js/handlePosts.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</html>

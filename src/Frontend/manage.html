@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feddit</title>
+
+    <link type="text/css" rel="stylesheet" href="/css/submit.css">
+</head>
+
+<body>
+    <div class="logo">
+        <a href="/">
+            <img style="width: 200px; resize: none" src="/images/logo.png">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="dropdown">
+            <div class="profile">
+                <img class="dropbtn" src="/images/fedditor.png">
+                <div class="dropdown-content">
+                    <ul>
+                        <div class="extraInfo"><i class='bx bx-cog'></i><span class="username">No account.</span></div>
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
+                            <li><i class='bx bx-user'></i><span>Profile</span></li>
+                        </a>
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)"
+                            href="/edit/">
+                            <li><i class='bx bx-user'></i><span>Edit profile</span></li>
+                        </a>
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)"
+                            href="/manage/">
+                            <li><i class='bx bx-user'></i><span>Manage subfeddit</span></li>
+                        </a>
+                        <li onclick="logout()"><i class='bx bx-log-in-circle'></i><span>Log Out</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="submitFields">
+
+        <div class="titleDiv">
+            <textarea class="title" placeholder="Subfeddit Name" maxlength="20"></textarea>
+        </div>
+
+        <div class="desc">
+            <textarea class="description" placeholder="Subfeddit Description" maxlength="100"></textarea>
+        </div>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input class="postButton" type="file" name="avatar" />
+            <input class="postButton" type="submit" value="Upload Image" />
+        </form>
+
+        <button class="postButton" onclick="saveChanges()">Save</button>
+    </div>
+</body>
+<script src="/js/utils.js"></script>
+
+<script src="/js/handleProfile.js"></script>
+
+<script>
+    var form = document.getElementById("uploadForm"); // Get the form element
+    var subfedditName = document.querySelector(".title"); // Get the name input element
+    var subfedditDesc = document.querySelector(".description"); // Get the name input element
+
+    async function saveChanges() {
+        const response = await fetch("/api/setsubfeddit", {
+            method: "POST",
+            headers: headersList,
+            body: JSON.stringify({
+                name: subfedditName.value,
+                description: subfedditDesc.value
+            })
+        });
+
+        if (response.status === 227) {
+            swal('Congrats!', 'You have created the subfeddit!', 'success')
+        } else if (response.ok) {
+            swal('Ay!', 'Settings saved!', 'success')
+        }
+        else {
+            swal('Man..', 'Something went wrong, and we don\'t even know why...')
+        }
+    }
+
+    document.getElementById("uploadForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        var formData = new FormData(form);
+
+        formData.append("name", subfedditName.value);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/uploadicon", true);
+
+        xhr.setRequestHeader("authorization", headersList.authorization);
+
+        xhr.onload = function () {
+            // Handle the response here
+            if (xhr.status === 200) {
+                swal('Ay!', 'Settings saved!', 'success')
+            } else {
+                swal('Man..', 'Something went wrong, and we don\'t even know why...')
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</html>

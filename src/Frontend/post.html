@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feddit</title>
+
+    <link type="text/css" rel="stylesheet" href="/css/submit.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
+
+</head>
+
+<body>
+    <div class="logo">
+        <a href="/">
+            <img style="width: 200px; resize: none" src="/images/logo.png">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="postMenu">
+            <a href="/submit">
+                <input placeholder="Create a post.">
+            </a>
+        </div>
+        <div class="dropdown">
+            <div class="profile">
+                <img class="dropbtn" src="/images/fedditor.png">
+                <div class="dropdown-content">
+                    <ul>
+                        <div class="extraInfo"><i class='bx bx-cog'></i><span class="username">No account.</span></div>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
+                            <li><i class='bx bx-user'></i><span>Profile</span></li>
+                        </a>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/edit/">
+                            <li><i class='bx bx-user'></i><span>Edit profile</span></li>
+                        </a>
+                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/manage/">
+                            <li><i class='bx bx-user'></i><span>Manage subfeddit</span></li>
+                        </a>
+                        <li onclick="logout()"><i class='bx bx-log-in-circle'></i><span>Log Out</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interestingInfo">
+        <div class="submitFields">
+            <div class="titleDiv">
+                <div id="title" class="title">Loading...</div>
+            </div>
+
+            <div class="descriptionDiv">
+                <div id="description" class="description">Loading...</div>
+            </div>
+
+
+        </div>
+        <div class="subfedditDiv">
+            <a class="subfedditTitle" href="/f/nfrealmusic">
+                <img class="subfedditImg" src="/images/random_guy.png">
+                <span>Loading...</span>
+            </a>
+
+            <div class="subfedditDescription">Loading...</div>
+
+            <a class="birthdayA" href="/f/nfrealmusic">
+                <img class="birthdayImg" src="/images/cake.png">
+                <span>Loading...</span>
+            </a>
+
+            <hr>
+
+            <div class="memberStats">
+                <div>
+                    <span class="mainText">Loading...</span>
+                    <span>Members</span>
+                </div>
+                <div>
+                    <img src="/images/online.png"><span class="mainText">Loading...</span>
+                    <span>Online</span>
+                </div>
+            </div>
+
+            <hr>
+
+            <button>Join</button>
+            <button onclick="window.location.href='/submit'">Create a post</button>
+        </div>
+    </div>
+</body>
+<script src="/js/utils.js"></script>
+
+<script src="/js/handleProfile.js"></script>
+<script src="/js/handlePostPreview.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</html>
