@@ -1,5 +1,3 @@
-ORIGINAL NOT COPIED FRFRFRFR ffrfrfrfr
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +8,7 @@ ORIGINAL NOT COPIED FRFRFRFR ffrfrfrfr
     <link type="text/css" rel="stylesheet" href="/css/homepage.css">
     <link type="text/css" rel="stylesheet" href="/css/subfeddit.css">
     <link type="text/css" rel="stylesheet" href="/css/post.css">
+    <link type="text/css" rel="stylesheet" href="/css/user.css">
 </head>
 
 <body>
@@ -31,13 +30,15 @@ ORIGINAL NOT COPIED FRFRFRFR ffrfrfrfr
                 <div class="dropdown-content">
                     <ul>
                         <div class="extraInfo"><i class='bx bx-cog'></i><span class="username">No account.</span></div>
-                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/u/">
                             <li><i class='bx bx-user'></i><span>Profile</span></li>
                         </a>
-                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/edit/">
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)"
+                            href="/edit/">
                             <li><i class='bx bx-user'></i><span>Edit profile</span></li>
                         </a>
-                        <a class= "userProfileLink" style="text-decoration: none; color: var(--text-color)" href="/manage/">
+                        <a class="userProfileLink" style="text-decoration: none; color: var(--text-color)"
+                            href="/manage/">
                             <li><i class='bx bx-user'></i><span>Manage subfeddit</span></li>
                         </a>
                         <li onclick="logout()"><i class='bx bx-log-in-circle'></i><span>Log Out</span></li>
@@ -46,38 +47,25 @@ ORIGINAL NOT COPIED FRFRFRFR ffrfrfrfr
             </div>
         </div>
     </div>
-
-    <div class="subfedditContainer">
+    <div class="loadingText">
+        <span class="loadingSpan">Loading...</span>
+    </div>
+    <div class="subfedditContainer" style="display:none">
         <div class="subfedditInfobox">
-            <img src="/images/random_guy.png">
-            <span>f/discordapp</span>
+            <img src="/images/fedditor.png">
+            <span>u/loading</span>
         </div>
         <div class="subfedditDiv">
-            <div class="subfedditDescription">The unofficial subreddit of NF (Nate Feuerstein), the lyricist, rapper,
-                and hip-hop artist. #realmusictillthedaywedie</div>
+            <div class="subfedditDescription">Loading</div>
 
             <a class="birthdayA" href="/subfeddit/nfrealmusic">
                 <img class="birthdayImg" src="/images/cake.png">
                 <span>Created Apr 22, 2023</span>
             </a>
-
-            <hr>
-
-            <div class="memberStats">
-                <div>
-                    <span class="mainText">27.8k</span>
-                    <span>Members</span>
-                </div>
-                <div>
-                    <img src="/images/online.png"><span class="mainText">853</span>
-                    <span>Online</span>
-                </div>
-            </div>
-
-            <hr>
-
-            <button>Join</button>
-            <button onclick="window.location.href='/submit'">Create a post</button>
+            <a class="birthdayA" href="/subfeddit/nfrealmusic">
+                <img class="birthdayImg" src="/images/karma.png">
+                <span class="karma">0 Karma</span>
+            </a>
         </div>
     </div>
 
@@ -130,9 +118,7 @@ ORIGINAL NOT COPIED FRFRFRFR ffrfrfrfr
 </body>
 <script src="/js/utils.js"></script>
 
-<script src="/js/homepage.js"></script>
 <script src="/js/handleProfile.js"></script>
-<script src="/js/subfeddit.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

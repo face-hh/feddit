@@ -6,7 +6,7 @@ const express = require('express');
 module.exports = {
 	name: 'api/getsubfeddit',
 	ratelimit: 1 * 60 * 1000,
-	max_requests_within_timeframe: 100,
+	max_requests_within_timeframe: 2000,
 	method: 'get',
 	/**
      * Get user info from token. Requires authorization in headers.
@@ -45,6 +45,7 @@ module.exports = {
 			online_fedditors: subfedditData.online_fedditors,
 			owner: subfedditData.owner,
 			createdAt: subfedditData.createdAt,
+			pfp: subfedditData.pfp,
 		});
 	},
 };

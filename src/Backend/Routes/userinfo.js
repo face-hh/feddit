@@ -19,6 +19,7 @@ module.exports = {
      * @returns JSON
      */
 	run: async (req, res, client) => {
+		const username = req.query.username;
 		const token = req.headers.authorization;
 
 		if (!token) {
@@ -32,11 +33,18 @@ module.exports = {
 
 		if (!userData) return res.sendStatus(403);
 
+		let data = await collection.findOne({ username });
+
+		if(!username || username === 'undefined') {
+			data = userData;
+		}
+		else if (!data) return res.sendStatus(404);
+
 		return res.send({
-			username: userData.username,
-			joinedAt: userData.joinedAt,
-			description: userData.description,
-			karma: userData.karma,
+			username: data.username,
+			joinedAt: data.joinedAt,
+			description: data.description,
+			karma: data.karma,
 		});
 	},
 };

@@ -2,7 +2,7 @@ const id = window.location.href.split('posts/')[1];
 
 window.addEventListener('DOMContentLoaded', async function() {
 	const data = await fetchPostData(id);
-	const subfedditData = await fetchSubData(data.subfeddit);
+	const subfedditData = await fetchSubData(data.subfeddit).catch(() => {});
 
 	const title = document.getElementById('title');
 	const desc = document.getElementById('description');

@@ -26,6 +26,25 @@ async function fetchSubData(name) {
 		headers: headersList,
 	});
 
+	if(response.status === 404) {
+		return swal('Oops', 'Subfeddit doesn\'t exist anymore!');
+	}
+
+	const data = await response.json();
+
+	return data;
+}
+
+async function fetchUserData(name) {
+	const response = await fetch('/api/userinfo?username=' + name, {
+		method: 'GET',
+		headers: headersList,
+	});
+
+	if(response.status === 404) {
+		return swal('Oops', 'User doesn\'t exist anymore!');
+	}
+
 	const data = await response.json();
 
 	return data;
@@ -77,13 +96,13 @@ function updateOverlay(subfedditData, user = false) {
 	if (subTitle) subTitle.innerText = subfedditData.name;
 	if (subDesc) subDesc.innerText = subfedditData.description;
 	if (subDate) subDate.innerText = `Created ${formatDate(subfedditData.createdAt)}`;
-	if (subMembers) subMembers.innerText = formatNumber(subfedditData.fedditors.length);
-	if (subOnline) subOnline.innerText = formatNumber(subfedditData.online_fedditors.length);
+	if (subMembers) subMembers.innerText = formatNumber(subfedditData.fedditors?.length);
+	if (subOnline) subOnline.innerText = formatNumber(subfedditData.online_fedditors?.length);
 
 	if (subDateHref && !user) subDateHref.href = '/f/' + subfedditData.name;
 	if (subTitleHref) subTitleHref.href = '/f/' + subfedditData.name;
 
-	if (karma && user) karma.innerText = subfedditData.karma;
+	if (karma && user) karma.innerText = formatNumber(subfedditData.karma) + ' Karma';
 }
 
 async function logout() {
@@ -112,4 +131,30 @@ async function sendUpvote(id, type) {
 	if (response.status === 200) votes.innerText = formatNumber(postData.upvotes);
 
 	return response.status;
+}
+
+function pushPost(votes, subfedditImage, subfeddit, title, description, postID) {
+	const voteSampleElement = document.querySelector('.voteSample');
+
+	const postLink = '/' + 'posts/' + postID;
+	const clonedVoteElement = voteSampleElement.cloneNode(true);
+
+	clonedVoteElement.querySelector('.voteCount').textContent = formatNumber(votes);
+	clonedVoteElement.querySelector('.extraPostInfo').innerHTML = `<a href="/f/${subfeddit}"><img src="${subfedditImage}">f/${subfeddit}</a>`;
+	clonedVoteElement.querySelector('.title').textContent = title;
+	clonedVoteElement.querySelector('.metadata p').textContent = description;
+	clonedVoteElement.querySelector('.metadata a').href = postLink;
+	clonedVoteElement.querySelector('.interactionButtons a').href = postLink;
+	clonedVoteElement.querySelector('.votes').id = postID;
+	clonedVoteElement.querySelector('.upvote').setAttribute('onclick', 'upvote(\'' + postID + '\')');
+	clonedVoteElement.querySelector('.downvote').setAttribute('onclick', 'downvote(\'' + postID + '\')');
+
+	const postDiv = document.createElement('div');
+	postDiv.className = 'post';
+
+	postDiv.appendChild(clonedVoteElement);
+	postDiv.innerHTML = postDiv.innerHTML.split('\n').slice(1).join('\n');
+
+	const scrollableDiv = document.querySelector('.scrollable');
+	scrollableDiv.appendChild(postDiv);
 }

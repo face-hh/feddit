@@ -1,19 +1,14 @@
 const usernameDiv = document.querySelector('.username');
 const extraInfo = document.querySelector('.extraInfo');
+
 const globalProfile = document.querySelector('.userProfileLink');
 
-let username;
-
 document.addEventListener('DOMContentLoaded', async () => {
-	const res = await fetch('/api/userinfo', {
-		headers: headersList,
-		method: 'GET',
-	});
+	const data = await fetchUserData();
 
-	if (res.status === 403) {
+	if (!data) {
 		globalProfile.addEventListener('click', event => event.preventDefault());
 	}
-	const data = await res.json();
 
 	username = data.username;
 
@@ -24,15 +19,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const usernameDiv2 = document.querySelector('.subfedditInfobox span');
 
 	if (usernameDiv2) {
-		usernameDiv2.innerText = 'u/' + username;
+		const providedUsername = window.location.href.split('/u/')[1];
+		const providedData = await fetchUserData(providedUsername);
+
+		usernameDiv2.innerText = 'u/' + providedUsername;
 
 		updateOverlay({
-			description: data.description,
-			createdAt: data.joinedAt,
-			karma: formatNumber(data.karma),
+			description: providedData.description,
+			createdAt: providedData.joinedAt,
+			karma: formatNumber(providedData.karma),
 		}, true);
 
-		const endpoint = '/api/generateuserfeed?username=' + username;
+		const endpoint = '/api/generatefeed?type=user&username=' + providedUsername;
 
 		const response = await fetch(endpoint, {
 			method: 'GET',
@@ -45,8 +43,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		const data2 = await response.json();
 
-		data2.forEach((post) => {
-			pushPost(post.votesLength, '/images/random_guy.png', post.subfeddit, post.title, post.description, post.id);
+		document.querySelector('.loadingText').style.display = 'none';
+		document.querySelector('.subfedditContainer').style.display = 'flex';
+		data2.forEach(async (post) => {
+			pushPost(post.upvotes || 0, `/${post.pfp}`, post.subfeddit, post.title, post.description, post.id);
 		});
 	}
 });

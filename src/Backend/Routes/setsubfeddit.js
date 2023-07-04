@@ -25,7 +25,7 @@ module.exports = {
 	run: async (req, res, client) => {
 		const token = req.headers.authorization;
 		const body = req.body;
-		const subredditNameRegex = /^[a-z0-9_]{3,21}$/;;
+		const subredditNameRegex = /^[a-z0-9_]{3,21}$/;
 
 		if (
 			!token ||
@@ -38,7 +38,7 @@ module.exports = {
 		if (
 			!subredditNameRegex.test(body.name)
 		) {
-			return res.json({ status: 400, error: 'Subreddit name can only have english characters, numbers, and must be within 3 and 21 characters.' })
+			return res.json({ status: 400, error: 'Subreddit name can only have english characters, numbers, and must be within 3 and 21 characters.' });
 		}
 
 		const db = client.db('feddit');
@@ -49,7 +49,7 @@ module.exports = {
 		const query = { sessionToken: token };
 
 		const userData = await usersCollection.findOne(query);
-		const subData = await subCollection.findOne({ name:body.name });
+		const subData = await subCollection.findOne({ name: body.name });
 
 		if (!userData) {
 			return res.sendStatus(403);

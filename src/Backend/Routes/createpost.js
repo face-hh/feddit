@@ -55,6 +55,7 @@ module.exports = {
 			createdAt: Date.now(),
 			votes: [],
 			OP: userData.username,
+			upvotes: 0,
 		});
 
 		return res.json({

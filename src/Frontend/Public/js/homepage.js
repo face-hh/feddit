@@ -1,14 +1,15 @@
+const loadingText = document.querySelector('.loadingText');
 document.addEventListener('DOMContentLoaded', async () => {
 	let endpoint;
 
 	if (window.location.href.includes('/f/')) {
-		endpoint = '/api/generatesubfeed?name=' + subfeddit;
+		endpoint = '/api/generatefeed?type=sub&subfeddit=' + subfeddit;
 	}
 	else if (window.location.href.includes('/u/')) {
 		return;
 	}
 	else {
-		endpoint = '/api/generatefeed';
+		endpoint = '/api/generatefeed?type=main';
 	}
 
 	const response = await fetch(endpoint, {
@@ -21,36 +22,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 	const data = await response.json();
 
-	data.forEach((post) => {
-		pushPost(post.votesLength, '/images/random_guy.png', post.subfeddit, post.title, post.description, post.id);
+	loadingText.style.display = 'none';
+
+	data.forEach(async (post) => {
+		pushPost(post.upvotes || 0, `/${post.pfp || 'default.png'}`, post.subfeddit, post.title, post.description, post.id);
 	});
 });
-
-function pushPost(votes, subfedditImage, subfeddit, title, description, postID) {
-	const voteSampleElement = document.querySelector('.voteSample');
-
-	const postLink = '/' + 'posts/' + postID;
-	const clonedVoteElement = voteSampleElement.cloneNode(true);
-
-	clonedVoteElement.querySelector('.voteCount').textContent = formatNumber(votes);
-	clonedVoteElement.querySelector('.extraPostInfo').innerHTML = `<a href="/f/${subfeddit}"><img src="${subfedditImage}">f/${subfeddit}</a>`;
-	clonedVoteElement.querySelector('.title').textContent = title;
-	clonedVoteElement.querySelector('.metadata p').textContent = description;
-	clonedVoteElement.querySelector('.metadata a').href = postLink;
-	clonedVoteElement.querySelector('.interactionButtons a').href = postLink;
-	clonedVoteElement.querySelector('.votes').id = postID;
-	clonedVoteElement.querySelector('.upvote').setAttribute('onclick', 'upvote(\'' + postID + '\')');
-	clonedVoteElement.querySelector('.downvote').setAttribute('onclick', 'downvote(\'' + postID + '\')');
-
-	const postDiv = document.createElement('div');
-	postDiv.className = 'post';
-
-	postDiv.appendChild(clonedVoteElement);
-	postDiv.innerHTML = postDiv.innerHTML.split('\n').slice(1).join('\n');
-
-	const scrollableDiv = document.querySelector('.scrollable');
-	scrollableDiv.appendChild(postDiv);
-}
 
 function formatNumber(number) {
 	if (number >= 1000000) {

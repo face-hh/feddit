@@ -20,7 +20,7 @@
     --settings-height: 200px;
     --settings-test: calc(100% - 2200px)
 }
- 
+
 .logo {
     position: fixed;
     top: 10px;
@@ -163,7 +163,7 @@
 }
 
 .extraInfo {
-    font-size: 15px;    
+    font-size: 15px;
     padding: 10px;
 
     display: flex;
@@ -200,4 +200,17 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to right, var(--brand-theme), var(--brand-theme-100));
+}
+
+/** loading text **/
+
+.loadingText {
+    display: flex;
+    justify-content: center;
+}
+
+.loadingSpan {
+    color: var(--text-color);
+    font-family: 'Lato';
+    font-size: 200px;
 }
