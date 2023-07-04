@@ -24,9 +24,13 @@ module.exports = {
      */
 	run: async (req, res, client) => {
 		const body = req.body;
+		const nameRegex = /^[a-z0-9_]{3,21}$/;;
 
 		if (!body.username) {
 			return res.sendStatus(400);
+		}
+		if (!nameRegex.test(body.username)) {
+			return res.json({ status: 400, error: 'Username can only have english characters, numbers, and must be within 3 and 21 characters.' })
 		}
 
 		const db = client.db('feddit');
@@ -56,6 +60,8 @@ module.exports = {
 				joinedAt: Date.now(),
 				mostVisitedSubfeddits: {},
 				karma: 0,
+
+				description: 'I haven\'t set a description yet!',
 			});
 
 			res.cookie('_SESSION_TOKEN', sessionToken);
@@ -74,8 +80,6 @@ module.exports = {
 				userID: userData._id,
 				date: Date.now(),
 				addon: generateAddon(),
-				subfeddits: {},
-				description: 'I haven\'t set a description yet!',
 			}, process.env.Encryption_Key);
 
 			res.cookie('_SESSION_TOKEN', sessionToken);
