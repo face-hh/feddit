@@ -55,10 +55,6 @@ module.exports = {
 			return res.sendStatus(403);
 		}
 
-		if (!body.name.startsWith("f/")) {
-			return res.sendStatus(403);
-		}
-
 		if (!subData) {
 			await subCollection.insertOne({
 				name: body.name,
