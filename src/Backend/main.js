@@ -113,7 +113,7 @@ app.use(bodyParser.json());
 
 require('./Routes/handler')(app, client, upload);
 
-const server = app.listen(4444, '127.0.0.2', async () => {
+const server = app.listen(process.env.PORT ?? 3000, '127.0.0.2', async () => {
 	await connectDatabase();
 	const { address, port } = server.address();
 	console.log(`Server listening at http://${address}:${port}`);
