@@ -20,6 +20,7 @@ proceedButton.addEventListener('click', async () => {
 	const ratelimit = res.headers.get('x-ratelimit-reset');
 
 	const status = res.status;
+	const json = await res.json().catch(() => {});
 
 	if (status === 403) {
 		swal('Invalid credentials.', 'We couldn\'t log you in :(', 'error');
@@ -29,6 +30,9 @@ proceedButton.addEventListener('click', async () => {
 	}
 	else if (status === 429) {
 		swal('Oh no!', `You're getting ratelimited! Try again in ${getTimeDifferenceInMinutes(ratelimit)} minutes!`, 'error');
+	}
+	else if (json?.status === 400) {
+		swal('Oh no!', json.error, 'error');
 	}
 	else if (status === 200) {
 		await swal('Welcome!', 'You\'ve been authenticated!', 'success');

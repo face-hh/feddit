@@ -10,7 +10,7 @@
 
 <body>
     <div class="logo">
-        <a href="/">
+        <a href="/home">
             <img style="width: 200px; resize: none" src="/images/logo.png">
         </a>
     </div>
@@ -76,8 +76,11 @@
                 description: subfedditDesc.value
             })
         });
+        const jsonRes = await response.json().catch(() => { });
 
-        if (response.status === 227) {
+        if (jsonRes?.status === 400) {
+            swal('Oh no!', jsonRes.error, 'error');
+        } else if (response.status === 227) {
             swal('Congrats!', 'You have created the subfeddit!', 'success')
         } else if (response.ok) {
             swal('Ay!', 'Settings saved!', 'success')

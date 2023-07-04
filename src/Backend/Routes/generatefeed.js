@@ -38,6 +38,13 @@ module.exports = {
 			return res.sendStatus(403);
 		}
 
+		// additional data to blend into the recommended data
+		let data = await postsCollection.aggregate([
+			{ $limit: 100 },
+			{ $addFields: { votesLength: { $size: '$votes' } } },
+			{ $sort: { votesLength: -1, createdAt: 1 } },
+		]).toArray();
+
 		const mostVisited = userData.mostVisitedSubfeddits;
 
 		const mostVisitedSubfeddits = [];
@@ -54,32 +61,21 @@ module.exports = {
 
 			const subfedditData = await postsCollection.aggregate([
 				{ $match: { subfeddit: subfeddit } },
-				{ $limit: 50 },
+				{ $limit: 100 },
 				{ $addFields: { votesLength: { $size: '$votes' } } },
 				{ $sort: { votesLength: -1, createdAt: 1 } },
 			]).toArray();
 
-			return shuffleArray(subfedditData);
+			return subfedditData;
 		});
 
 		const promisedDataArray = await Promise.all(promises);
-		let data = [];
 
 		promisedDataArray.forEach((promisedData) => {
 			promisedData.forEach((post) => data.push(post));
 		});
 
-		if (data.length === 0) {
-			const additionalData = await postsCollection.aggregate([
-				{ $limit: 50 },
-				{ $addFields: { votesLength: { $size: '$votes' } } },
-				{ $sort: { votesLength: -1, createdAt: 1 } },
-			]).toArray();
-
-			data = shuffleArray(additionalData);
-		}
-
-		return res.json(data);
+		return res.json(shuffleArray(data));
 	},
 };
 
