@@ -44,7 +44,6 @@ module.exports = {
 		if (!userData) {
 			return res.sendStatus(403);
 		}
-
 		const postID = generateAddon();
 
 		await collection.insertOne({
