@@ -39,6 +39,7 @@ const app = express();
 app.use(express.static(path.resolve('src/Frontend/Public')));
 app.use(express.static(path.resolve('CDN')));
 app.use(cookieParser());
+app.set('trust proxy', 1);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
