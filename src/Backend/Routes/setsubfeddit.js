@@ -55,7 +55,7 @@ module.exports = {
 			return res.sendStatus(403);
 		}
 
-		if (!body.name.startsWith("r/")) {
+		if (!body.name.startsWith("f/")) {
 			return res.sendStatus(403);
 		}
 
