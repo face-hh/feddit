@@ -214,3 +214,16 @@
     font-family: 'Lato';
     font-size: 200px;
 }
+
+.postedSpan {
+    margin-left: 5px;
+    color: var(--secondary-theme);
+    font-size: 12px;
+    align-self: center;
+}
+
+.dot {
+    margin-left: 5px;
+    font-size: 12px;
+    align-self: center;
+}

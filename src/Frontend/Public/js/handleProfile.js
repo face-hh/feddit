@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	// user profile
 	const usernameDiv2 = document.querySelector('.subfedditInfobox span');
 
-	if (usernameDiv2) {
+	if (usernameDiv2 && window.location.href.includes('/u/')) {
 		const providedUsername = window.location.href.split('/u/')[1];
 		const providedData = await fetchUserData(providedUsername);
 
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		document.querySelector('.loadingText').style.display = 'none';
 		document.querySelector('.subfedditContainer').style.display = 'flex';
 		data2.forEach(async (post) => {
-			pushPost(post.upvotes || 0, `/${post.pfp}`, post.subfeddit, post.title, post.description, post.id);
+			pushPost(post.upvotes || 0, `/${post.pfp}`, post.subfeddit, post.title, post.description, post.id, post.OP, post.createdAt);
 		});
 	}
 });

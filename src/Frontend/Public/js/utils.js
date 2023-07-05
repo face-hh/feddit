@@ -26,7 +26,7 @@ async function fetchSubData(name) {
 		headers: headersList,
 	});
 
-	if(response.status === 404) {
+	if (response.status === 404) {
 		return swal('Oops', 'Subfeddit doesn\'t exist anymore!');
 	}
 
@@ -41,7 +41,7 @@ async function fetchUserData(name) {
 		headers: headersList,
 	});
 
-	if(response.status === 404) {
+	if (response.status === 404) {
 		return swal('Oops', 'User doesn\'t exist anymore!');
 	}
 
@@ -133,14 +133,15 @@ async function sendUpvote(id, type) {
 	return response.status;
 }
 
-function pushPost(votes, subfedditImage, subfeddit, title, description, postID) {
+function pushPost(votes, subfedditImage, subfeddit, title, description, postID, postAuthor, postDate) {
 	const voteSampleElement = document.querySelector('.voteSample');
 
 	const postLink = '/' + 'posts/' + postID;
 	const clonedVoteElement = voteSampleElement.cloneNode(true);
 
 	clonedVoteElement.querySelector('.voteCount').textContent = formatNumber(votes);
-	clonedVoteElement.querySelector('.extraPostInfo').innerHTML = `<a href="/f/${subfeddit}"><img src="${subfedditImage}">f/${subfeddit}</a>`;
+	clonedVoteElement.querySelector('.extraPostInfo a').innerHTML = `<a href="/f/${subfeddit}"><img src="${subfedditImage}">f/${subfeddit}</a>`;
+
 	clonedVoteElement.querySelector('.title').textContent = title;
 	clonedVoteElement.querySelector('.metadata p').textContent = description;
 	clonedVoteElement.querySelector('.metadata a').href = postLink;
@@ -148,6 +149,8 @@ function pushPost(votes, subfedditImage, subfeddit, title, description, postID) 
 	clonedVoteElement.querySelector('.votes').id = postID;
 	clonedVoteElement.querySelector('.upvote').setAttribute('onclick', 'upvote(\'' + postID + '\')');
 	clonedVoteElement.querySelector('.downvote').setAttribute('onclick', 'downvote(\'' + postID + '\')');
+
+	clonedVoteElement.querySelector('.postedSpan').textContent = 'Posted by u/' + postAuthor + ' | ' + formatDate(postDate);
 
 	const postDiv = document.createElement('div');
 	postDiv.className = 'post';
@@ -157,4 +160,28 @@ function pushPost(votes, subfedditImage, subfeddit, title, description, postID) 
 
 	const scrollableDiv = document.querySelector('.scrollable');
 	scrollableDiv.appendChild(postDiv);
+}
+
+function formatDate(date) {
+	const now = Date.now();
+	const diff = (now - date) / 1000;
+
+	const intervals = [
+		{ label: 'year', seconds: 31536000 },
+		{ label: 'month', seconds: 2592000 },
+		{ label: 'day', seconds: 86400 },
+		{ label: 'hour', seconds: 3600 },
+		{ label: 'minute', seconds: 60 },
+	];
+
+	for (let i = 0; i < intervals.length; i++) {
+		const interval = intervals[i];
+		const intervalDiff = Math.floor(diff / interval.seconds);
+
+		if (intervalDiff >= 1) {
+			return intervalDiff + ' ' + interval.label + (intervalDiff === 1 ? '' : 's') + ' ago';
+		}
+	}
+
+	return 'just now';
 }

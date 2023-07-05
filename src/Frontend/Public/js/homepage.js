@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	loadingText.style.display = 'none';
 
 	data.forEach(async (post) => {
-		pushPost(post.upvotes || 0, `/${post.pfp || 'default.png'}`, post.subfeddit, post.title, post.description, post.id);
+		pushPost(post.upvotes || 0, `/${post.pfp || 'default.png'}`, post.subfeddit, post.title, post.description, post.id, post.OP, post.createdAt);
 	});
 });
 
