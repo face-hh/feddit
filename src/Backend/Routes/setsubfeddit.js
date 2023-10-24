@@ -54,6 +54,7 @@ module.exports = {
 		if (!userData) {
 			return res.sendStatus(403);
 		}
+
 		if (!subData) {
 			await subCollection.insertOne({
 				name: body.name,
